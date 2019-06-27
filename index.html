@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Binary Clock</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='main.css' />
+  <script src='main.js'></script>
+</head>
+
+<body>
+
+  <div class='container'>
+
+    <div class='text-center'>
+      <h1> BCD Clock </h1>
+    </div>
+
+    <!-- Clock Panel -->
+    <div id='clockPanel' class='row'>
+
+      <!-- Hour Section -->
+      <div id='hours' class='col-xs-4'>
+
+        <div class='col-xs-6' id='h1'>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+        </div>
+
+        <div class='col-xs-6' id='h2'>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+        </div>
+
+      </div>
+      <!-- Hours Section End -->
+
+      <!-- Minute Section -->
+      <div id='minutes' class='col-xs-4'>
+
+        <div class='col-xs-6' id='m1'>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+        </div>
+
+        <div class='col-xs-6' id='m2'>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+        </div>
+
+      </div>
+      <!-- Minutes Section End -->
+
+      <!-- Second Section -->
+      <div id='seconds' class='col-xs-4'>
+
+        <div class='col-xs-6' id='s1'>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+        </div>
+
+        <div class='col-xs-6' id='s2'>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+          <div class='row indicator'></div>
+        </div>
+
+      </div>
+      <!-- Second Section -->
+
+    </div>
+    <!-- Clock Panel End -->
+
+
+    <!-- Information Section -->
+    <div id='infoSection'>
+      <h2>What witchcraft is this?</h2>
+      <p>
+        To answer the question, this is a CLOCK (as the heading so pointedly suggests, we'll get to BCD later). It is
+        meant to tell the current time (from your system clock, in your timezone; if you care about that stuff).
+        Fret not, once you understand the working of it all, this will seem little more than childs play to you!
+      </p>
+
+
+      <h2>Well, how does it work then?</h2>
+      <p>
+        Quite simple really, it tells time in military format (ie the 24-hour format). The first 2 columns (from your
+        left) indicate hours, next 2 indicate minutes and final 2 show the seconds. Check it out, the last column will
+        be updated on an every-second interval.
+      </p>
+
+      <h2>But there are no numbers, how to tell the time?</h2>
+      <p>
+        Using a little math, I'd say; each digit of the time HH:MM:SS is encoded into its equivalent binary format
+        (hence the name BCD, which stands for 'Binary Coded Decimal'). For example let's say the current time is 2:30
+        pm which in 24-hour format is 14:30 hours, thus the binary equivalent of each digit is '0001' '0100' : '0011'
+        '0000' (imagine the same for seconds)
+      </p>
+      <p>
+        This binary format is represented by the positional indicators in each column. Extending our previous example,
+        to represent 2 pm or 14 hours or the binary '0001' '0100', our clock's hour section (first 2 columns from left,
+        in case you forget) will glow accordingly. For '0001', first 3 indicators (from top) will be off, last one will
+        be
+        ON. For '0100', only 2nd indicator will be ON.
+      </p>
+
+      <h2>I still don't understand how to tell time!</h2>
+      <p>
+        Well, since you've come so far, it'll let you in on the secret. Imagine a number in each block/indicator -
+        First row indicators will have number 8, next row 4, next 2 and finally 1. Something like this :
+        <pre>
+        | 8 | 8 | 8 | 8 | 8 | 8 |
+        | 4 | 4 | 4 | 4 | 4 | 4 |
+        | 2 | 2 | 2 | 2 | 2 | 2 |
+        | 1 | 1 | 1 | 1 | 1 | 1 |
+        </pre>
+
+        Now, let us assume some of the indicators are ON, like those marked by X below :
+        <pre>
+        | 8 | 8 | 8 | 8 | 8 | 8 |
+        | 4 | X | 4 | 4 | X | 4 |
+        | 2 | 2 | X | 2 | 2 | X |
+        | X | 1 | X | 1 | 1 | 1 |
+        </pre>
+
+        Simply calculate the sum of ON indicators for each column, like this :
+        <pre>
+        | 8 | 8 | 8 | 8 | 8 | 8 |
+        | 4 | X | 4 | 4 | X | 4 |
+        | 2 | 2 | X | 2 | 2 | X |
+        | X | 1 | X | 1 | 1 | 1 |
+          1   4   3   0   4   2 
+        </pre>
+
+        Well, there you have it, the time is 14:30:42 ie 2:30 pm (and 42 seconds!)
+      </p>
+
+
+      <h2>Interesting! Where can I learn more?</h2>
+      <p>
+        I have learned about and created this BCD Clock out of pure curiosity; took me a few hours to read & code it
+        out. My point - this is not meant to be a one stop shop for all things BCDC. In fact, most representations of a
+        BCD Clock skip the unneeded indicators (like indicators of 4 & 8 for hours). There are also different types of
+        binary clocks; who knows, you may come up with an innovative representation all on your own!
+      </p>
+      <p>
+        Here are a few public domain links that might help point in proper direction -
+        <ul>
+          <li>
+            <a href='https://en.wikipedia.org/wiki/Binary_clock' target='_blank'>Binary Clock Wiki</a>
+          </li>
+          <li>
+            <a href='https://www.wikihow.com/Read-a-Binary-Clock' target='_blank'>Read a Binary Clock</a>
+          </li>
+          <li>
+            <a href='http://www.abulsme.com/binarytime/' target='_blank'>True Binary Clock</a>
+          </li>
+        </ul>
+      </p>
+      <p>
+        Wanna see how this clock works behind the scene? See javascript code <a href='./main.js' target='_blank'>here</a>
+        <br />
+        Say hi, drop a mail at <a href='mailto:priteshtupe@gmail.com'>priteshtupe@gmail.com</a>
+      </p>
+
+    </div>
+    <!-- Information Section End -->
+
+  </div>
+  <!-- Container End -->
+
+</body>
+
+</html>

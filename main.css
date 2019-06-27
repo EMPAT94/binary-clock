@@ -1,0 +1,28 @@
+@import './bootstrap.min.css';
+body {
+  background-color: beige;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+div.col-xs-4 {
+  padding: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+div.indicator {
+  padding: 20%;
+  border: 0.1px solid green;
+}
+
+div#infoSection {
+  margin-top: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+#footer {
+  width: 100%;
+  margin: 20px auto;
+}
