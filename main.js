@@ -75,7 +75,7 @@ function _redrawIndicators(onIndArr, nodes) {
       row = +row;
       let node = nodeList.shift();
       if (row) { // If the indicator is ON (bit is 1)
-        node.style.backgroundColor = 'greenyellow';
+        node.style.backgroundColor = 'crimson';
       } else { // If the indicator is OFF (bit is 0)
         node.style.backgroundColor = '';
       }

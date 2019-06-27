@@ -1,7 +1,15 @@
 @import './bootstrap.min.css';
+
+html,
 body {
-  background-color: beige;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0px;
+  padding: 0px;
+  font-size: 1.099rem;
+  line-height: 1.4em;
+  letter-spacing: 0.09em;
+  background-color: rgb(30, 30, 30);
+  color: white;
+  font-family: "Roboto-Thin", Verdana, Geneva, Tahoma, sans-serif;
 }
 
 div.col-xs-4 {
@@ -11,7 +19,7 @@ div.col-xs-4 {
 
 div.indicator {
   padding: 20%;
-  border: 0.1px solid green;
+  border: 0.1px solid darkred;
 }
 
 div#infoSection {
